@@ -1,7 +1,8 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import { signIn } from '@/lib/supabase/auth'
+import { useAuth } from '@/contexts/AuthContext'
 
 interface LoginFormProps {
   onSuccess?: () => void
@@ -13,21 +14,35 @@ export default function LoginForm({ onSuccess, onSwitchToRegister }: LoginFormPr
   const [password, setPassword] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  
+  const { error: authError } = useAuth()
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = useCallback(async (e: React.FormEvent) => {
     e.preventDefault()
+    if (isLoading) return
+    
     setIsLoading(true)
     setError(null)
 
     try {
       await signIn({ email, password })
+      // Success will be handled by AuthContext automatically
       onSuccess?.()
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Произошла ошибка')
+      const errorMessage = err instanceof Error ? err.message : 'Произошла ошибка при входе'
+      setError(errorMessage)
+      
+      if (process.env.NODE_ENV === 'development') {
+        console.error('🚀 LoginForm: Login error', err)
+      }
     } finally {
       setIsLoading(false)
     }
-  }
+  }, [email, password, isLoading, onSuccess])
+
+  const handleSwitchToRegister = useCallback(() => {
+    onSwitchToRegister?.()
+  }, [onSwitchToRegister])
 
   return (
     <div className="max-w-md mx-auto bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
@@ -35,9 +50,9 @@ export default function LoginForm({ onSuccess, onSwitchToRegister }: LoginFormPr
         Вход в аккаунт
       </h2>
 
-      {error && (
-        <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded">
-          {error}
+      {(error || authError) && (
+        <div className="mb-4 p-3 bg-red-100 dark:bg-red-900 border border-red-400 dark:border-red-600 text-red-700 dark:text-red-300 rounded">
+          {error || authError?.message}
         </div>
       )}
 
@@ -87,8 +102,10 @@ export default function LoginForm({ onSuccess, onSwitchToRegister }: LoginFormPr
         <p className="text-sm text-gray-600 dark:text-gray-400">
           Нет аккаунта?{' '}
           <button
-            onClick={onSwitchToRegister}
-            className="text-blue-600 hover:text-blue-500 font-medium"
+            type="button"
+            onClick={handleSwitchToRegister}
+            className="text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300 font-medium transition-colors"
+            disabled={isLoading}
           >
             Зарегистрироваться
           </button>

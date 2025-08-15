@@ -4,6 +4,7 @@ import "./globals.css";
 import { ReduxProvider } from "@/lib/redux/provider";
 import { AuthProvider } from "@/contexts/AuthContext";
 import ConditionalHeader from "@/components/layout/ConditionalHeader";
+import AuthDebug from "@/components/debug/AuthDebug";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
