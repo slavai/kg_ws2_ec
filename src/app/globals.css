@@ -1,8 +1,9 @@
 @import "tailwindcss";
+@import "../styles/cyberpunk-theme.css";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: var(--color-cyber-black);
+  --foreground: var(--color-neon-cyan);
 }
 
 @theme inline {
@@ -12,15 +13,90 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Cyberpunk mode body styles */
+body {
+  background: linear-gradient(135deg, 
+    var(--color-cyber-black) 0%,
+    var(--color-cyber-dark) 50%,
+    var(--color-cyber-gray) 100%
+  );
+  color: var(--color-neon-cyan);
+  font-family: var(--font-family-cyber);
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Cyberpunk container effects */
+.cyberpunk-mode {
+  position: relative;
+}
+
+.cyberpunk-container {
+  position: relative;
+  z-index: 1;
+}
+
+/* Global cyberpunk utilities */
+.bg-cyber {
+  background: var(--color-cyber-dark);
+}
+
+.bg-cyber-gradient {
+  background: linear-gradient(135deg, 
+    var(--color-cyber-dark), 
+    var(--color-cyber-black)
+  );
+}
+
+.text-neon {
+  color: var(--color-neon-cyan);
+}
+
+/* Override default link styles */
+a {
+  color: var(--color-neon-cyan);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+a:hover {
+  color: var(--color-neon-pink);
+  text-shadow: 0 0 10px var(--color-neon-pink);
+}
+
+/* Scrollbar customization for cyberpunk theme */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-cyber-black);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-neon-cyan);
+  border-radius: 4px;
+  box-shadow: 0 0 10px var(--color-neon-cyan);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-neon-pink);
+  box-shadow: 0 0 15px var(--color-neon-pink);
+}
+
+/* Selection highlight */
+::selection {
+  background: var(--color-neon-cyan);
+  color: var(--color-cyber-black);
+}
+
+/* Focus ring cyberpunk style */
+*:focus {
+  outline: none;
+}
+
+*:focus-visible {
+  outline: 2px solid var(--color-neon-cyan);
+  outline-offset: 2px;
+  box-shadow: 0 0 10px var(--color-neon-cyan);
 }
