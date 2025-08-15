@@ -1,17 +1,12 @@
-import { configureStore, createSlice } from '@reduxjs/toolkit'
+import { configureStore } from '@reduxjs/toolkit'
 import { setupListeners } from '@reduxjs/toolkit/query'
-
-// Temporary slice для инициализации store
-const tempSlice = createSlice({
-  name: 'temp',
-  initialState: { initialized: true },
-  reducers: {}
-})
+import cartReducer from './slices/cartSlice'
+import ordersReducer from './slices/ordersSlice'
 
 export const store = configureStore({
   reducer: {
-    temp: tempSlice.reducer,
-    // Здесь будем добавлять другие slices
+    cart: cartReducer,
+    orders: ordersReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

@@ -1,13 +1,26 @@
 'use client'
 
-import { useState, useCallback, useMemo, memo } from 'react'
+import { useState, useCallback, useMemo, memo, useEffect } from 'react'
 import { useAuth } from '@/contexts/AuthContext'
 import AuthModal from '@/components/auth/AuthModal'
+import { useAppDispatch, useCartItemCount } from '@/lib/redux/hooks'
+import { fetchCart } from '@/lib/redux/slices/cartSlice'
 
 const Header = memo(function Header() {
   const { user, userProfile, signOut, isLoading, isInitialized, error } = useAuth()
   const [authModalOpen, setAuthModalOpen] = useState(false)
   const [authMode, setAuthMode] = useState<'login' | 'register'>('login')
+  
+  // Redux cart state
+  const dispatch = useAppDispatch()
+  const cartItemCount = useCartItemCount()
+
+  // Fetch cart when user is authenticated
+  useEffect(() => {
+    if (user) {
+      dispatch(fetchCart())
+    }
+  }, [user, dispatch])
 
   // Throttled debug render only in development - reduce log spam
   if (process.env.NODE_ENV === 'development') {
@@ -89,7 +102,11 @@ const Header = memo(function Header() {
                 className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors flex items-center space-x-1"
               >
                 <span>Корзина</span>
-                <span className="bg-blue-100 text-blue-800 text-xs rounded-full px-2 py-1">0</span>
+                {cartItemCount > 0 && (
+                  <span className="bg-blue-100 dark:bg-blue-900/20 text-blue-800 dark:text-blue-400 text-xs rounded-full px-2 py-1 min-w-[20px] text-center">
+                    {cartItemCount > 99 ? '99+' : cartItemCount}
+                  </span>
+                )}
               </a>
               {userDisplayInfo?.isAdmin && (
                 <a
