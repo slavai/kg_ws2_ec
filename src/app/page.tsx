@@ -1,5 +1,6 @@
 import { getProducts } from '@/lib/supabase/database'
 import ProductCatalog from '@/components/products/ProductCatalog'
+import SpaceGameCanvas from '@/components/game/SpaceGameCanvas'
 
 export default async function Home() {
   // Fetch products on server side
@@ -19,6 +20,9 @@ export default async function Home() {
       {/* Scanlines Effect */}
       <div className="scanlines absolute inset-0 pointer-events-none" />
 
+      {/* Space Game Canvas - Interactive Background */}
+      <SpaceGameCanvas />
+
       {/* Hero Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 relative z-10">
         <div className="text-center">
@@ -33,7 +37,7 @@ export default async function Home() {
           
           {/* Cyberpunk Categories Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16 mb-20">
-            <div className="cyber-card hover:neon-glow-cyan group">
+            <div className="cyber-card group hover:shadow-lg hover:shadow-neon-cyan/50 transition-all duration-300">
               <div className="text-5xl mb-6 transform group-hover:glitch">🎮</div>
               <h3 className="text-xl font-cyber font-bold mb-4 neon-text-cyan group-hover:neon-text-pink transition-all duration-300">
                 [GAMES.DLL]

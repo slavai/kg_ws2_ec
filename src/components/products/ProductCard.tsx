@@ -43,7 +43,7 @@ export default function ProductCard({ product }: ProductCardProps) {
   }
 
   return (
-    <div className="cyber-card group hover:neon-glow-cyan transition-all duration-300 transform hover:scale-105 relative overflow-hidden">
+    <div className="cyber-card group hover:shadow-lg hover:shadow-neon-cyan/50 transition-all duration-300 transform hover:scale-105 relative overflow-hidden">
       {/* Glitch overlay effect */}
       <div className="absolute inset-0 bg-gradient-to-br from-neon-cyan/5 via-transparent to-neon-pink/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
       
@@ -97,7 +97,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                 showSuccess
                   ? 'bg-neon-green text-cyber-black neon-glow-cyan'
                   : product.is_active
-                  ? 'bg-cyber-dark border border-neon-cyan text-neon-cyan hover:neon-glow-cyan hover:bg-neon-cyan/10 hover:scale-105'
+                  ? 'bg-cyber-dark border border-neon-cyan text-neon-cyan hover:shadow-lg hover:shadow-neon-cyan/50 hover:bg-neon-cyan/10 hover:scale-105'
                   : 'bg-cyber-medium text-cyber-lighter cursor-not-allowed border border-cyber-medium'
               } ${isAdding ? 'opacity-50 cursor-not-allowed animate-pulse' : ''}`}
               style={{ clipPath: 'polygon(0 0, calc(100% - 8px) 0, 100% 100%, 8px 100%)' }}

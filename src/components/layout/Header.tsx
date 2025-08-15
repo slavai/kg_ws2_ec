@@ -74,17 +74,17 @@ const Header = memo(function Header() {
 
   return (
     <>
-      <header className="bg-white dark:bg-gray-900 shadow-sm border-b border-gray-200 dark:border-gray-700">
+      <header className="bg-cyber-black border-b-2 border-neon-cyan shadow-neon-cyan relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             {/* Logo */}
             <div className="flex items-center">
-              <a href="/" className="flex items-center space-x-2">
-                <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-lg">D</span>
+              <a href="/" className="flex items-center space-x-2 group">
+                <div className="w-8 h-8 bg-cyber-dark border border-neon-cyan rounded-cyber flex items-center justify-center neon-glow-cyan group-hover:glitch transition-all duration-300">
+                  <span className="text-neon-cyan font-bold text-lg font-cyber">D</span>
                 </div>
-                <h1 className="text-xl font-bold text-gray-900 dark:text-white">
-                  Digital Store
+                <h1 className="text-xl font-bold neon-text-cyan font-cyber group-hover:neon-text-pink transition-colors duration-300">
+                  DIGITAL_STORE.SYS
                 </h1>
               </a>
             </div>
@@ -93,17 +93,17 @@ const Header = memo(function Header() {
             <nav className="hidden md:flex items-center space-x-8">
               <a
                 href="/"
-                className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
+                className="text-cyber-lighter hover:neon-text-cyan transition-all duration-300 font-mono text-sm uppercase tracking-wider hover:glitch-hover relative"
               >
-                Каталог
+                [CATALOG.DB]
               </a>
               <a
                 href="/cart"
-                className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors flex items-center space-x-1"
+                className="text-cyber-lighter hover:neon-text-pink transition-all duration-300 font-mono text-sm uppercase tracking-wider flex items-center space-x-2 hover:glitch-hover relative"
               >
-                <span>Корзина</span>
+                <span>[CART.SYS]</span>
                 {cartItemCount > 0 && (
-                  <span className="bg-blue-100 dark:bg-blue-900/20 text-blue-800 dark:text-blue-400 text-xs rounded-full px-2 py-1 min-w-[20px] text-center">
+                  <span className="bg-cyber-dark border border-glitch-red text-glitch-red neon-glow-pink text-xs px-2 py-1 min-w-[20px] text-center font-cyber pulse-soft">
                     {cartItemCount > 99 ? '99+' : cartItemCount}
                   </span>
                 )}
@@ -111,10 +111,10 @@ const Header = memo(function Header() {
               {userDisplayInfo?.isAdmin && (
                 <a
                   href="/admin/dashboard"
-                  className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 flex items-center space-x-2 shadow-lg hover:shadow-xl transform hover:scale-105"
+                  className="cyber-card bg-gradient-to-r from-glitch-red/20 to-neon-purple/20 border border-glitch-red hover:neon-glow-pink text-glitch-red px-4 py-2 text-sm font-cyber font-bold transition-all duration-300 flex items-center space-x-2 hover:glitch uppercase tracking-wider"
                 >
-                  <span className="text-base">⚙️</span>
-                  <span>Админ-панель</span>
+                  <span className="text-base pulse-soft">⚙️</span>
+                  <span>ADMIN.EXE</span>
                 </a>
               )}
             </nav>
@@ -135,8 +135,8 @@ const Header = memo(function Header() {
               )}
               
               {error && (
-                <div className="text-red-500 text-sm">
-                  ⚠️ Auth Error
+                <div className="text-glitch-red text-sm font-cyber pulse-soft bg-cyber-dark border border-glitch-red px-2 py-1 rounded-cyber neon-glow-pink">
+                  ⚠️ [AUTH_ERROR.LOG]
                 </div>
               )}
             </div>
@@ -159,17 +159,17 @@ export default Header
 // Skeleton components for better UX
 function HeaderSkeleton() {
   return (
-    <header className="bg-white dark:bg-gray-900 shadow-sm border-b border-gray-200 dark:border-gray-700">
+    <header className="bg-cyber-black border-b-2 border-neon-cyan shadow-neon-cyan">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
           <div className="flex items-center">
             <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-gray-300 rounded-lg animate-pulse"></div>
-              <div className="w-32 h-6 bg-gray-300 rounded animate-pulse"></div>
+              <div className="w-8 h-8 bg-cyber-dark border border-neon-cyan rounded-cyber pulse-soft"></div>
+              <div className="w-32 h-6 bg-cyber-dark rounded-cyber pulse-soft"></div>
             </div>
           </div>
           <div className="flex items-center space-x-4">
-            <div className="w-20 h-8 bg-gray-300 rounded animate-pulse"></div>
+            <div className="w-20 h-8 bg-cyber-dark rounded-cyber pulse-soft"></div>
           </div>
         </div>
       </div>
@@ -180,8 +180,8 @@ function HeaderSkeleton() {
 function AuthSkeleton() {
   return (
     <div className="flex items-center space-x-2">
-      <div className="w-16 h-8 bg-gray-200 rounded animate-pulse"></div>
-      <div className="w-20 h-8 bg-gray-200 rounded animate-pulse"></div>
+      <div className="w-16 h-8 bg-cyber-dark border border-neon-cyan rounded-cyber pulse-soft"></div>
+      <div className="w-20 h-8 bg-cyber-dark border border-neon-pink rounded-cyber pulse-soft"></div>
     </div>
   )
 }
@@ -203,51 +203,51 @@ const AuthenticatedUser = memo(function AuthenticatedUser({
   return (
     <div className="flex items-center space-x-4">
       {/* User balance */}
-      <div className="hidden sm:flex items-center space-x-2 bg-green-50 dark:bg-green-900 px-3 py-1 rounded-full">
-        <span className="text-green-600 dark:text-green-400 text-sm font-medium">
-          💰 ${userInfo.balance}
+      <div className="hidden sm:flex items-center space-x-2 bg-cyber-dark border border-neon-green px-3 py-1 rounded-cyber neon-glow-green">
+        <span className="text-neon-green text-sm font-cyber font-bold pulse-soft">
+          💰 ${userInfo.balance} CREDITS
         </span>
       </div>
       
       {/* User menu */}
       <div className="relative group">
-        <button className="flex items-center space-x-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">
-          <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
-            <span className="text-white text-sm font-medium">
+        <button className="flex items-center space-x-2 text-cyber-lighter hover:neon-text-cyan transition-all duration-300 hover:glitch-hover">
+          <div className="w-8 h-8 bg-cyber-dark border border-neon-cyan rounded-cyber flex items-center justify-center neon-glow-cyan group-hover:glitch">
+            <span className="text-neon-cyan text-sm font-cyber font-bold">
               {userInfo.avatar}
             </span>
           </div>
-          <span className="hidden sm:block">
-            {userInfo.displayName}
+          <span className="hidden sm:block font-cyber text-sm uppercase tracking-wider">
+            [{userInfo.displayName}]
           </span>
         </button>
         
         {/* Dropdown menu */}
-        <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-md shadow-lg py-1 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+        <div className="absolute right-0 mt-2 w-56 bg-cyber-black border border-neon-cyan rounded-cyber shadow-neon-cyan py-2 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
           <a
             href="/profile"
-            className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+            className="block px-4 py-2 text-sm text-cyber-lighter hover:text-neon-cyan hover:bg-cyber-dark transition-all duration-300 font-mono uppercase tracking-wider border-l-2 border-transparent hover:border-neon-cyan"
           >
-            Профиль
+            [PROFILE.CFG]
           </a>
           <a
             href="/orders"
-            className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+            className="block px-4 py-2 text-sm text-cyber-lighter hover:text-neon-pink hover:bg-cyber-dark transition-all duration-300 font-mono uppercase tracking-wider border-l-2 border-transparent hover:border-neon-pink"
           >
-            Мои заказы
+            [ORDERS.LOG]
           </a>
           <a
             href="/my-products"
-            className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+            className="block px-4 py-2 text-sm text-cyber-lighter hover:text-neon-purple hover:bg-cyber-dark transition-all duration-300 font-mono uppercase tracking-wider border-l-2 border-transparent hover:border-neon-purple"
           >
-            Мои продукты
+            [MY_PRODUCTS.DB]
           </a>
-          <hr className="my-1 border-gray-200 dark:border-gray-600" />
+          <hr className="my-2 border-neon-cyan opacity-50" />
           <button
             onClick={onSignOut}
-            className="block w-full text-left px-4 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-gray-100 dark:hover:bg-gray-700"
+            className="block w-full text-left px-4 py-2 text-sm text-glitch-red hover:text-white hover:bg-glitch-red/20 transition-all duration-300 font-mono uppercase tracking-wider border-l-2 border-transparent hover:border-glitch-red hover:glitch-hover"
           >
-            Выйти
+            [LOGOUT.EXE]
           </button>
         </div>
       </div>
@@ -261,18 +261,18 @@ const UnauthenticatedButtons = memo(function UnauthenticatedButtons({
   onAuthAction: (mode: 'login' | 'register') => void 
 }) {
   return (
-    <div className="flex items-center space-x-2">
+    <div className="flex items-center space-x-3">
       <button
         onClick={() => onAuthAction('login')}
-        className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
+        className="text-cyber-lighter hover:neon-text-cyan transition-all duration-300 font-mono text-sm uppercase tracking-wider hover:glitch-hover"
       >
-        Войти
+        [LOGIN]
       </button>
       <button
         onClick={() => onAuthAction('register')}
-        className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
+        className="bg-cyber-dark border border-neon-pink text-neon-pink px-4 py-2 rounded-cyber hover:neon-glow-pink hover:bg-neon-pink/10 transition-all duration-300 font-mono text-sm font-bold uppercase tracking-wider hover:glitch"
       >
-        Регистрация
+        [REGISTER.BAT]
       </button>
     </div>
   )

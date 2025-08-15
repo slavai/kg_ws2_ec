@@ -34,7 +34,7 @@ const CyberButton = forwardRef<HTMLButtonElement, CyberButtonProps>(({
       text: "text-neon-cyan",
       border: "border-neon-cyan",
       focus: "focus:ring-neon-cyan",
-      glow: "hover:neon-glow-cyan"
+      glow: "hover:shadow-lg hover:shadow-neon-cyan/50"
     },
     pink: {
       text: "text-neon-pink", 

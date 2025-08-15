@@ -6,8 +6,7 @@
 /* Essential layers for proper CSS ordering */
 @layer theme, base, components, utilities;
 
-@import "tailwindcss/theme.css" layer(theme);
-@import "tailwindcss/utilities.css" layer(utilities);
+
 
 @theme {
   /* Reset default Tailwind colors for clean slate */
@@ -94,6 +93,8 @@
     0 0 15px var(--color-neon-purple),
     0 0 20px var(--color-neon-purple);
 }
+
+
 
 .neon-text-cyan {
   color: var(--color-neon-cyan);
@@ -252,7 +253,7 @@
   @apply relative px-6 py-3 font-bold uppercase tracking-wider;
   @apply bg-cyber-dark border border-neon-cyan text-neon-cyan;
   @apply transform transition-all duration-300;
-  @apply hover:neon-glow-cyan hover:scale-105;
+  @apply hover:shadow-lg hover:shadow-neon-cyan/50 hover:scale-105;
   
   clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 100%, 10px 100%);
 }
@@ -315,7 +316,7 @@
 }
 
 .cyber-card:hover {
-  @apply border-neon-cyan neon-glow-cyan transform scale-105;
+  @apply border-neon-cyan shadow-lg shadow-neon-cyan/50 transform scale-105;
   
   background: linear-gradient(135deg, 
     var(--color-cyber-dark) 0%,
