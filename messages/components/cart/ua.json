@@ -1,0 +1,20 @@
+{
+  "title": "КОШИК.СИС",
+  "itemsInCart": "товарів в кошику",
+  "itemInCart": "товар в кошику",
+  "clearCart": "Очистити кошик",
+  "clearCartConfirm": "Ви впевнені, що хочете очистити кошик?",
+  "removeFromCart": "Видалити з кошика",
+  "emptyCartTitle": "Ваш кошик порожній",
+  "emptyCartMessage": "Схоже, ви ще не додали жодного товару до кошика.",
+  "continueShoppingButton": "Продовжити покупки",
+  "orderSummary": "Підсумок замовлення",
+  "items": "Товари",
+  "total": "Всього",
+  "yourBalance": "Ваш баланс",
+  "remainingAfterPurchase": "Залишиться після покупки",
+  "insufficientBalance": "Недостатньо коштів",
+  "needMoreFunds": "Вам потрібно ще ${amount} для завершення покупки.",
+  "proceedToCheckout": "Перейти до оплати",
+  "processing": "Обробка..."
+}

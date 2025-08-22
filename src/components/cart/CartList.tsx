@@ -6,11 +6,15 @@ import CartSummary from './CartSummary'
 import { useAppDispatch, useCart } from '@/lib/redux/hooks'
 import { useAuth } from '@/contexts/AuthContext'
 import { fetchCart, updateCartItem, removeFromCart, clearCart } from '@/lib/redux/slices/cartSlice'
+import { useTranslations } from 'next-intl'
+import { CyberButton } from '@/components/ui/CyberButton'
+import Link from 'next/link'
 
 export default function CartList() {
   const dispatch = useAppDispatch()
   const { userProfile } = useAuth()
   const { items, total, itemCount, loading, error } = useCart()
+  const t = useTranslations('Cart')
 
   useEffect(() => {
     dispatch(fetchCart())
@@ -25,7 +29,7 @@ export default function CartList() {
   }
 
   const handleClearCart = async () => {
-    if (window.confirm('Are you sure you want to clear your cart?')) {
+    if (window.confirm(t('clearCartConfirm'))) {
       await dispatch(clearCart())
     }
   }
@@ -41,21 +45,21 @@ export default function CartList() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
-          Shopping Cart
+        <h1 className="text-4xl font-bold neon-text-cyan font-cyber glitch-text uppercase tracking-wider">
+          {t('title')}
         </h1>
-        <p className="text-gray-600 dark:text-gray-400 mt-2">
-          {itemCount} {itemCount === 1 ? 'item' : 'items'} in your cart
+        <p className="text-cyber-light mt-2 font-mono text-lg">
+          [{itemCount}] {itemCount === 1 ? t('itemInCart') : t('itemsInCart')}
         </p>
       </div>
 
       {error && (
-        <div className="mb-6 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
+        <div className="mb-6 p-4 bg-cyber-dark border border-glitch-red rounded-cyber neon-glow-pink">
           <div className="flex items-center">
-            <svg className="w-5 h-5 text-red-600 dark:text-red-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-5 h-5 text-glitch-red mr-2 pulse-soft" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
-            <p className="text-red-800 dark:text-red-200">{error}</p>
+            <p className="text-glitch-red font-cyber">[ERROR]: {error}</p>
           </div>
         </div>
       )}
@@ -66,18 +70,21 @@ export default function CartList() {
           {/* Clear Cart Button */}
           {items.length > 0 && (
             <div className="mb-4 flex justify-end">
-              <button
+              <CyberButton
+                variant="outline"
+                color="pink"
+                size="sm"
                 onClick={handleClearCart}
-                className="text-sm text-red-600 dark:text-red-400 hover:underline"
                 disabled={loading}
+                className="hover:glitch"
               >
-                Clear Cart
-              </button>
+                {t('clearCart')}
+              </CyberButton>
             </div>
           )}
 
           {/* Items List */}
-          <div className="space-y-4">
+          <div className="space-y-6">
             {items.map((item) => (
               <CartItem
                 key={item.id}
@@ -110,38 +117,38 @@ function CartSkeleton() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="mb-8">
-        <div className="h-8 w-64 bg-gray-300 dark:bg-gray-700 rounded animate-pulse mb-2"></div>
-        <div className="h-4 w-32 bg-gray-300 dark:bg-gray-700 rounded animate-pulse"></div>
+        <div className="h-10 w-64 bg-cyber-dark border border-neon-cyan rounded-cyber pulse-soft mb-2 neon-glow-cyan"></div>
+        <div className="h-6 w-32 bg-cyber-dark border border-cyber-medium rounded-cyber pulse-soft"></div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <div className="lg:col-span-2 space-y-4">
+        <div className="lg:col-span-2 space-y-6">
           {[...Array(3)].map((_, i) => (
-            <div key={i} className="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-sm border border-gray-200 dark:border-gray-700">
+            <div key={i} className="cyber-card bg-cyber-dark border border-cyber-medium p-6 neon-glow-cyan">
               <div className="flex items-center space-x-4">
-                <div className="w-16 h-16 bg-gray-300 dark:bg-gray-700 rounded-lg animate-pulse"></div>
+                <div className="w-16 h-16 bg-cyber-medium border border-neon-cyan rounded-cyber pulse-soft neon-glow-cyan"></div>
                 <div className="flex-1">
-                  <div className="h-6 w-48 bg-gray-300 dark:bg-gray-700 rounded animate-pulse mb-2"></div>
-                  <div className="h-4 w-32 bg-gray-300 dark:bg-gray-700 rounded animate-pulse"></div>
+                  <div className="h-6 w-48 bg-cyber-medium border border-neon-cyan rounded-cyber pulse-soft mb-2"></div>
+                  <div className="h-4 w-32 bg-cyber-medium border border-cyber-light rounded-cyber pulse-soft"></div>
                 </div>
-                <div className="w-24 h-8 bg-gray-300 dark:bg-gray-700 rounded animate-pulse"></div>
+                <div className="w-24 h-8 bg-cyber-medium border border-neon-purple rounded-cyber pulse-soft"></div>
               </div>
             </div>
           ))}
         </div>
         
         <div className="lg:col-span-1">
-          <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm border border-gray-200 dark:border-gray-700">
-            <div className="h-6 w-32 bg-gray-300 dark:bg-gray-700 rounded animate-pulse mb-4"></div>
+          <div className="cyber-card bg-cyber-dark border border-cyber-medium p-6 neon-glow-purple">
+            <div className="h-6 w-32 bg-cyber-medium border border-neon-purple rounded-cyber pulse-soft mb-4"></div>
             <div className="space-y-3">
               {[...Array(4)].map((_, i) => (
                 <div key={i} className="flex justify-between">
-                  <div className="h-4 w-20 bg-gray-300 dark:bg-gray-700 rounded animate-pulse"></div>
-                  <div className="h-4 w-16 bg-gray-300 dark:bg-gray-700 rounded animate-pulse"></div>
+                  <div className="h-4 w-20 bg-cyber-medium border border-cyber-light rounded-cyber pulse-soft"></div>
+                  <div className="h-4 w-16 bg-cyber-medium border border-cyber-light rounded-cyber pulse-soft"></div>
                 </div>
               ))}
             </div>
-            <div className="h-12 w-full bg-gray-300 dark:bg-gray-700 rounded animate-pulse mt-6"></div>
+            <div className="h-12 w-full bg-cyber-medium border border-neon-cyan rounded-cyber pulse-soft mt-6 neon-glow-cyan"></div>
           </div>
         </div>
       </div>
@@ -150,25 +157,31 @@ function CartSkeleton() {
 }
 
 function EmptyCart() {
+  const t = useTranslations('Cart')
+  
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <div className="text-center py-12">
-        <div className="text-6xl mb-4">🛒</div>
-        <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-          Your cart is empty
+      <div className="text-center py-12 cyber-card bg-cyber-dark border border-cyber-medium neon-glow-cyan">
+        <div className="text-8xl mb-6 neon-text-cyan glitch-text">🛒</div>
+        <h1 className="text-3xl font-bold neon-text-cyan font-cyber uppercase tracking-wider mb-4 glitch-hover">
+          {t('emptyCartTitle')}
         </h1>
-        <p className="text-gray-600 dark:text-gray-400 mb-8">
-          Looks like you haven't added any items to your cart yet.
+        <p className="text-cyber-light mb-8 font-mono text-lg max-w-md mx-auto">
+          [{t('emptyCartMessage')}]
         </p>
-        <a
-          href="/"
-          className="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors"
-        >
-          <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-          </svg>
-          Continue Shopping
-        </a>
+        <Link href="/">
+          <CyberButton 
+            variant="neon" 
+            color="cyan" 
+            size="lg"
+            className="hover:glitch"
+          >
+            <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+            {t('continueShoppingButton')}
+          </CyberButton>
+        </Link>
       </div>
     </div>
   )

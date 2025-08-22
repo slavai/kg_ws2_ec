@@ -1,0 +1,20 @@
+{
+  "title": "CART.SYS",
+  "itemsInCart": "items in your cart",
+  "itemInCart": "item in your cart", 
+  "clearCart": "Clear Cart",
+  "clearCartConfirm": "Are you sure you want to clear your cart?",
+  "removeFromCart": "Remove from cart",
+  "emptyCartTitle": "Your cart is empty",
+  "emptyCartMessage": "Looks like you haven't added any items to your cart yet.",
+  "continueShoppingButton": "Continue Shopping",
+  "orderSummary": "Order Summary",
+  "items": "Items",
+  "total": "Total",
+  "yourBalance": "Your Balance",
+  "remainingAfterPurchase": "Remaining After Purchase",
+  "insufficientBalance": "Insufficient Balance",
+  "needMoreFunds": "You need ${amount} more to complete this purchase.",
+  "proceedToCheckout": "Proceed to Checkout",
+  "processing": "Processing..."
+}
