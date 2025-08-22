@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import ProductCard from './ProductCard'
+import { useTranslations } from 'next-intl'
 import type { Product } from '@/lib/types/database'
 
 interface ProductCatalogProps {
@@ -12,6 +13,7 @@ export default function ProductCatalog({ initialProducts = [] }: ProductCatalogP
   const [products, setProducts] = useState<Product[]>(initialProducts)
   const [loading, setLoading] = useState(initialProducts.length === 0)
   const [error, setError] = useState<string | null>(null)
+  const t = useTranslations('ProductCatalog')
 
   useEffect(() => {
     if (initialProducts.length === 0) {
@@ -47,14 +49,14 @@ export default function ProductCatalog({ initialProducts = [] }: ProductCatalogP
       <div className="text-center py-12">
         <div className="text-6xl mb-4">❌</div>
         <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-          Failed to load products
+          {t('error') || 'Failed to load products'}
         </h2>
         <p className="text-gray-600 dark:text-gray-400 mb-4">{error}</p>
         <button
           onClick={fetchProducts}
           className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
         >
-          Try Again
+          {t('tryAgain') || 'Try Again'}
         </button>
       </div>
     )
@@ -65,10 +67,10 @@ export default function ProductCatalog({ initialProducts = [] }: ProductCatalogP
       <div className="text-center py-12">
         <div className="text-6xl mb-4">📦</div>
         <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-          No products available
+          {t('noProducts')}
         </h2>
         <p className="text-gray-600 dark:text-gray-400">
-          Check back later for new digital products!
+          {t('checkBackLater') || 'Check back later for new digital products!'}
         </p>
       </div>
     )
@@ -78,10 +80,10 @@ export default function ProductCatalog({ initialProducts = [] }: ProductCatalogP
     <div>
       <div className="text-center mb-12">
         <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
-          Featured Products
+          {t('featuredProducts')}
         </h2>
         <p className="text-xl text-gray-600 dark:text-gray-300">
-          Discover our latest digital products and exclusive offers
+          {t('featuredDescription')}
         </p>
       </div>
 

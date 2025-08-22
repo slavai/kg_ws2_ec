@@ -5,6 +5,8 @@ import { ReduxProvider } from "@/lib/redux/provider";
 import { AuthProvider } from "@/contexts/AuthContext";
 import ConditionalHeader from "@/components/layout/ConditionalHeader";
 import AuthDebug from "@/components/debug/AuthDebug";
+import { NextIntlClientProvider } from 'next-intl';
+import { getLocale, getMessages } from 'next-intl/server';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -21,22 +23,27 @@ export const metadata: Metadata = {
   description: "Интернет-магазин цифровых продуктов: купоны, лицензии, игры",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = await getLocale();
+  const messages = await getMessages();
+  
   return (
-    <html lang="en">
+    <html lang={locale}>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ReduxProvider>
-          <AuthProvider>
-            <ConditionalHeader />
-            {children}
-          </AuthProvider>
-        </ReduxProvider>
+        <NextIntlClientProvider locale={locale} messages={messages}>
+          <ReduxProvider>
+            <AuthProvider>
+              <ConditionalHeader />
+              {children}
+            </AuthProvider>
+          </ReduxProvider>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

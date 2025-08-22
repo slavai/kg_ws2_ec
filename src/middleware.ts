@@ -1,12 +1,26 @@
 import { type NextRequest, NextResponse } from 'next/server'
 import { createServerClient } from '@supabase/ssr'
+import createMiddleware from 'next-intl/middleware'
+import { routing } from './i18n/routing'
 
 // Cache user profiles to avoid repeated DB calls
 const userProfileCache = new Map<string, { isAdmin: boolean, timestamp: number }>()
 const CACHE_TTL = 5 * 60 * 1000 // 5 minutes
 
+// Создаем i18n middleware
+const intlMiddleware = createMiddleware(routing);
+
 export async function middleware(request: NextRequest) {
-  let response = NextResponse.next({
+  // Сначала обрабатываем i18n
+  const response = intlMiddleware(request);
+  
+  // Если i18n middleware вернул редирект, используем его
+  if (response instanceof Response && response.status !== 200) {
+    return response;
+  }
+  
+  // Продолжаем с auth middleware
+  let authResponse = NextResponse.next({
     request: {
       headers: request.headers,
     },
@@ -22,11 +36,11 @@ export async function middleware(request: NextRequest) {
         },
         setAll(cookiesToSet) {
           cookiesToSet.forEach(({ name, value }) => request.cookies.set(name, value))
-          response = NextResponse.next({
+          authResponse = NextResponse.next({
             request,
           })
           cookiesToSet.forEach(({ name, value, options }) =>
-            response.cookies.set(name, value, options)
+            authResponse.cookies.set(name, value, options)
           )
         },
       },
@@ -121,7 +135,7 @@ export async function middleware(request: NextRequest) {
     // Continue to allow public routes to work
   }
 
-  return response
+  return authResponse
 }
 
 export const config = {

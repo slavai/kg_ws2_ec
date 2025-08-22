@@ -1,0 +1,19 @@
+{
+  "featuredProducts": "Featured Products",
+  "featuredDescription": "Discover our latest digital products and exclusive offers",
+  "noProducts": "No products available",
+  "loadMore": "Load More Products",
+  "category": "Category",
+  "priceRange": "Price Range",
+  "sortBy": "Sort By",
+  "sortOptions": {
+    "newest": "Newest First",
+    "oldest": "Oldest First", 
+    "priceHigh": "Price: High to Low",
+    "priceLow": "Price: Low to High",
+    "name": "Name A-Z"
+  },
+  "error": "Failed to load products",
+  "tryAgain": "Try Again",
+  "checkBackLater": "Check back later for new digital products!"
+}

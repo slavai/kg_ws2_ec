@@ -1,0 +1,37 @@
+{
+  "title": "DIGITAL_STORE.EXE",
+  "subtitle": "> DIGITAL_PRODUCTS: [COUPONS, LICENSES, GAMES] INITIATED_",
+  "description": "Your premium digital marketplace",
+  "featuredProducts": "[ FEATURED_PRODUCTS.DB ]",
+  "featuredDescription": "Discover our latest digital products and exclusive offers",
+  "selectItem": "> SELECT ITEM_TO_INITIATE PURCHASE_SEQUENCE",
+  "categories": {
+    "games": {
+      "title": "[GAMES.DLL]",
+      "line1": "> DIGITAL_COPIES_OF_POPULAR.GAMES",
+      "line2": "> STATUS: AVAILABLE",
+      "line3": "> ACCESS_LEVEL: PUBLIC"
+    },
+    "software": {
+      "title": "[SOFTWARE.SYS]",
+      "line1": "> SOFTWARE_LICENSES.EXEC",
+      "line2": "> STATUS: ENCRYPTED",
+      "line3": "> DECRYPTION: PURCHASE_REQ"
+    },
+    "coupons": {
+      "title": "[COUPONS.BAT]",
+      "line1": "> DISCOUNT_CODES_ARCHIVE",
+      "line2": "> STATUS: ACTIVE", 
+      "line3": "> VALIDITY: REAL_TIME"
+    }
+  },
+  "terminal": {
+    "initializing": "> INITIALIZING PRODUCT_CATALOG...",
+    "connectionEstablished": "> CONNECTION ESTABLISHED",
+    "loadingDatabase": "> LOADING ITEMS_DATABASE...",
+    "complete": "> [████████████] 100% COMPLETE",
+    "readyForPurchase": "> READY FOR PURCHASE_PROTOCOL",
+    "cursor": "> _"
+  },
+  "errorText": "ERR_404_REALITY_NOT_FOUND"
+}
