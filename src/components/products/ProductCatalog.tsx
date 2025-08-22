@@ -121,3 +121,4 @@ function CatalogSkeleton() {
     </div>
   )
 }
+

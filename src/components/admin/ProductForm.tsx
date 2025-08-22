@@ -88,18 +88,18 @@ export default function ProductForm({ product, mode }: ProductFormProps) {
   }
 
   return (
-    <div className="bg-white rounded-lg shadow">
+    <div className="cyber-card bg-cyber-dark border border-neon-purple neon-glow-purple">
       <form onSubmit={handleSubmit} className="p-6 space-y-6">
         {error && (
-          <div className="p-4 bg-red-50 border border-red-200 rounded-md">
-            <p className="text-red-800 text-sm">{error}</p>
+          <div className="p-4 bg-glitch-red/20 border border-glitch-red rounded-cyber neon-glow-red">
+            <p className="text-glitch-red text-sm font-cyber font-bold uppercase tracking-wider">[ERROR: {error}]</p>
           </div>
         )}
 
         {/* Product Name */}
         <div>
-          <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-            Название продукта *
+          <label htmlFor="name" className="block text-sm font-medium neon-text-purple mb-2 font-cyber uppercase tracking-wider">
+            [PRODUCT.NAME] *
           </label>
           <input
             type="text"
@@ -107,16 +107,16 @@ export default function ProductForm({ product, mode }: ProductFormProps) {
             value={formData.name}
             onChange={(e) => handleChange('name', e.target.value)}
             disabled={isLoading}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-100"
-            placeholder="Введите название продукта"
+            className="w-full px-3 py-2 bg-cyber-black border border-neon-cyan text-neon-cyan placeholder-cyber-lighter rounded-cyber focus:outline-none focus:ring-2 focus:ring-neon-cyan focus:border-neon-cyan disabled:bg-cyber-dark font-mono neon-glow-cyan"
+            placeholder="[ENTER_PRODUCT_NAME.INPUT]"
             required
           />
         </div>
 
         {/* Description */}
         <div>
-          <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-2">
-            Описание
+          <label htmlFor="description" className="block text-sm font-medium neon-text-green mb-2 font-cyber uppercase tracking-wider">
+            [DESCRIPTION.TXT]
           </label>
           <textarea
             id="description"
@@ -124,15 +124,15 @@ export default function ProductForm({ product, mode }: ProductFormProps) {
             onChange={(e) => handleChange('description', e.target.value)}
             disabled={isLoading}
             rows={4}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-100"
-            placeholder="Введите описание продукта"
+            className="w-full px-3 py-2 bg-cyber-black border border-neon-green text-neon-green placeholder-cyber-lighter rounded-cyber focus:outline-none focus:ring-2 focus:ring-neon-green focus:border-neon-green disabled:bg-cyber-dark font-mono text-sm neon-glow-green"
+            placeholder="[ENTER_PRODUCT_DESCRIPTION.TXT]"
           />
         </div>
 
         {/* Image URL */}
         <div>
-          <label htmlFor="image_url" className="block text-sm font-medium text-gray-700 mb-2">
-            URL изображения
+          <label htmlFor="image_url" className="block text-sm font-medium neon-text-yellow mb-2 font-cyber uppercase tracking-wider">
+            [IMAGE_URL.LINK]
           </label>
           <input
             type="url"
@@ -140,15 +140,15 @@ export default function ProductForm({ product, mode }: ProductFormProps) {
             value={formData.image_url}
             onChange={(e) => handleChange('image_url', e.target.value)}
             disabled={isLoading}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-100"
-            placeholder="https://example.com/image.jpg"
+            className="w-full px-3 py-2 bg-cyber-black border border-neon-yellow text-neon-yellow placeholder-cyber-lighter rounded-cyber focus:outline-none focus:ring-2 focus:ring-neon-yellow focus:border-neon-yellow disabled:bg-cyber-dark font-mono text-sm neon-glow-yellow"
+            placeholder="[HTTPS://EXAMPLE.COM/IMAGE.JPG]"
           />
           {formData.image_url && (
             <div className="mt-2">
               <img 
                 src={formData.image_url} 
-                alt="Превью"
-                className="w-32 h-32 object-cover rounded-md border"
+                alt="[PREVIEW.IMG]"
+                className="w-32 h-32 object-cover rounded-cyber border border-neon-yellow neon-glow-yellow"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement
                   target.style.display = 'none'
@@ -160,8 +160,8 @@ export default function ProductForm({ product, mode }: ProductFormProps) {
 
         {/* Price */}
         <div>
-          <label htmlFor="price" className="block text-sm font-medium text-gray-700 mb-2">
-            Цена (USD) *
+          <label htmlFor="price" className="block text-sm font-medium neon-text-cyan mb-2 font-cyber uppercase tracking-wider">
+            [PRICE.USD] *
           </label>
           <input
             type="number"
@@ -171,44 +171,44 @@ export default function ProductForm({ product, mode }: ProductFormProps) {
             disabled={isLoading}
             min="0"
             step="0.01"
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-100"
-            placeholder="0.00"
+            className="w-full px-3 py-2 bg-cyber-black border border-neon-cyan text-neon-cyan placeholder-cyber-lighter rounded-cyber focus:outline-none focus:ring-2 focus:ring-neon-cyan focus:border-neon-cyan disabled:bg-cyber-dark font-mono text-sm neon-glow-cyan"
+            placeholder="[0.00]"
             required
           />
         </div>
 
         {/* Active Status */}
-        <div className="flex items-center">
+        <div className="flex items-center p-4 bg-cyber-black border border-neon-green rounded-cyber neon-glow-green">
           <input
             type="checkbox"
             id="is_active"
             checked={formData.is_active}
             onChange={(e) => handleChange('is_active', e.target.checked)}
             disabled={isLoading}
-            className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+            className="h-4 w-4 text-neon-green focus:ring-neon-green border-neon-green rounded-cyber bg-cyber-dark"
           />
-          <label htmlFor="is_active" className="ml-2 block text-sm text-gray-700">
-            Продукт активен (отображается в каталоге)
+          <label htmlFor="is_active" className="ml-2 block text-sm neon-text-green font-cyber uppercase tracking-wider">
+            [PRODUCT_ACTIVE.FLAG] - VISIBLE IN CATALOG
           </label>
         </div>
 
         {/* Form Actions */}
-        <div className="flex items-center justify-between pt-6 border-t border-gray-200">
+        <div className="flex items-center justify-between pt-6 border-t border-neon-purple">
           <button
             type="button"
             onClick={() => router.back()}
             disabled={isLoading}
-            className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50"
+            className="cyber-card px-4 py-2 text-sm font-medium bg-cyber-dark border border-cyber-lighter text-cyber-lighter hover:neon-text-cyan hover:border-neon-cyan hover:neon-glow-cyan transition-all duration-300 disabled:opacity-50 font-cyber uppercase tracking-wider"
           >
-            Отмена
+            [CANCEL.BAT]
           </button>
           
           <button
             type="submit"
             disabled={isLoading}
-            className="px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50"
+            className="cyber-card px-4 py-2 text-sm font-medium bg-gradient-to-r from-neon-green/20 to-neon-cyan/20 border border-neon-green text-neon-green hover:neon-glow-green hover:glitch transition-all duration-300 disabled:opacity-50 font-cyber font-bold uppercase tracking-wider"
           >
-            {isLoading ? 'Сохранение...' : mode === 'create' ? 'Создать продукт' : 'Сохранить изменения'}
+            {isLoading ? '[SAVING.PROCESS]' : mode === 'create' ? '[CREATE_PRODUCT.EXE]' : '[SAVE_CHANGES.BAT]'}
           </button>
         </div>
       </form>

@@ -21,9 +21,11 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
   return (
     <div>
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">Управление продуктами</h1>
-        <p className="text-gray-600 mt-2">
-          Создавайте, редактируйте и управляйте каталогом продуктов
+        <h1 className="text-3xl font-bold neon-text-purple font-cyber glitch-hover">
+          [PRODUCTS.DB]
+        </h1>
+        <p className="text-cyber-lighter mt-2 font-mono text-sm uppercase tracking-wider">
+          &gt;&gt;&gt; CREATE, EDIT &amp; MANAGE PRODUCT CATALOG &lt;&lt;&lt;
         </p>
       </div>
 

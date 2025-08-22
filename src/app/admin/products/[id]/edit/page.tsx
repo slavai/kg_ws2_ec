@@ -17,9 +17,11 @@ export default async function EditProductPage({ params }: EditProductPageProps) 
   return (
     <div>
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">Редактировать продукт</h1>
-        <p className="text-gray-600 mt-2">
-          Изменить информацию о продукте "{product.name}"
+        <h1 className="text-3xl font-bold neon-text-yellow font-cyber glitch-hover">
+          [EDIT_PRODUCT.SYS]
+        </h1>
+        <p className="text-cyber-lighter mt-2 font-mono text-sm uppercase tracking-wider">
+          &gt;&gt;&gt; MODIFY PRODUCT DATA: &quot;{product.name}&quot; &lt;&lt;&lt;
         </p>
       </div>
 

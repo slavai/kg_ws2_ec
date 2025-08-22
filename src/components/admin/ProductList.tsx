@@ -89,90 +89,90 @@ export default function ProductList({ initialProducts, total }: ProductListProps
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            placeholder="Поиск по названию..."
-            className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            placeholder="[SEARCH_QUERY.INPUT]"
+            className="flex-1 px-3 py-2 bg-cyber-dark border border-neon-cyan text-neon-cyan placeholder-cyber-lighter rounded-cyber focus:outline-none focus:ring-2 focus:ring-neon-cyan focus:border-neon-cyan font-mono text-sm"
           />
           <button
             type="submit"
-            className="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500"
+            className="cyber-card px-4 py-2 bg-cyber-dark border border-neon-purple text-neon-purple hover:neon-glow-purple hover:glitch transition-all duration-300 font-cyber font-bold uppercase tracking-wider"
           >
-            Найти
+            [SCAN.EXE]
           </button>
         </form>
         
         <a
           href="/admin/products/new"
-          className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 flex items-center gap-2"
+          className="cyber-card px-4 py-2 bg-gradient-to-r from-neon-green/20 to-neon-cyan/20 border border-neon-green text-neon-green hover:neon-glow-green hover:glitch transition-all duration-300 flex items-center gap-2 font-cyber font-bold uppercase tracking-wider"
         >
-          <span>+</span>
-          Добавить продукт
+          <span className="text-lg pulse-soft">+</span>
+          [ADD_PRODUCT.BAT]
         </a>
       </div>
 
       {/* Products Table */}
-      <div className="bg-white rounded-lg shadow overflow-hidden">
-        <div className="px-6 py-4 border-b border-gray-200">
-          <h3 className="text-lg font-medium text-gray-900">
-            Продукты ({total})
+      <div className="cyber-card bg-cyber-dark border border-neon-purple neon-glow-purple overflow-hidden">
+        <div className="px-6 py-4 border-b border-neon-purple">
+          <h3 className="text-lg font-medium neon-text-purple font-cyber uppercase tracking-wider">
+            [PRODUCTS_DB.COUNT: {total}]
           </h3>
         </div>
 
         {products.length === 0 ? (
           <div className="p-6 text-center">
-            <div className="text-gray-400 text-4xl mb-4">📦</div>
-            <h3 className="text-lg font-medium text-gray-900 mb-2">
-              Продукты не найдены
+            <div className="text-glitch-red text-4xl mb-4 pulse-soft">📦</div>
+            <h3 className="text-lg font-medium neon-text-red font-cyber mb-2 uppercase tracking-wider">
+              [ERROR: NO_PRODUCTS_FOUND]
             </h3>
-            <p className="text-gray-500 mb-4">
-              {search ? 'Попробуйте изменить поисковый запрос' : 'Начните с создания первого продукта'}
+            <p className="text-cyber-lighter mb-4 font-mono text-sm">
+              {search ? '[TRY_DIFFERENT_SEARCH_QUERY.BAT]' : '[CREATE_FIRST_PRODUCT.EXE]'}
             </p>
             <a
               href="/admin/products/new"
-              className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
+              className="cyber-card inline-flex items-center px-4 py-2 bg-gradient-to-r from-neon-green/20 to-neon-cyan/20 border border-neon-green text-neon-green hover:neon-glow-green hover:glitch transition-all duration-300 font-cyber font-bold uppercase tracking-wider"
             >
-              Создать продукт
+              [CREATE_PRODUCT.EXE]
             </a>
           </div>
         ) : (
           <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
+            <table className="min-w-full divide-y divide-neon-purple">
+              <thead className="bg-cyber-black border-b border-neon-purple">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Продукт
+                  <th className="px-6 py-3 text-left text-xs font-medium text-neon-purple uppercase tracking-wider font-cyber">
+                    [PRODUCT.NAME]
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Цена
+                  <th className="px-6 py-3 text-left text-xs font-medium text-neon-cyan uppercase tracking-wider font-cyber">
+                    [PRICE.USD]
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Статус
+                  <th className="px-6 py-3 text-left text-xs font-medium text-neon-green uppercase tracking-wider font-cyber">
+                    [STATUS.FLAG]
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Создан
+                  <th className="px-6 py-3 text-left text-xs font-medium text-neon-yellow uppercase tracking-wider font-cyber">
+                    [CREATE.DATE]
                   </th>
-                  <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Действия
+                  <th className="px-6 py-3 text-right text-xs font-medium text-glitch-red uppercase tracking-wider font-cyber">
+                    [ACTIONS.EXE]
                   </th>
                 </tr>
               </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
+              <tbody className="bg-cyber-black divide-y divide-cyber-dark">
                 {products.map((product) => (
-                  <tr key={product.id} className="hover:bg-gray-50">
+                  <tr key={product.id} className="hover:bg-cyber-dark/50 hover:glitch-hover transition-all duration-300">
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex items-center">
                         {product.image_url && (
                           <img
                             src={product.image_url}
                             alt={product.name}
-                            className="w-10 h-10 object-cover rounded mr-3"
+                            className="w-10 h-10 object-cover rounded-cyber border border-neon-cyan mr-3 neon-glow-cyan"
                           />
                         )}
                         <div>
-                          <div className="text-sm font-medium text-gray-900">
+                          <div className="text-sm font-medium neon-text-purple font-cyber">
                             {product.name}
                           </div>
                           {product.description && (
-                            <div className="text-sm text-gray-500 truncate max-w-xs">
+                            <div className="text-sm text-cyber-lighter truncate max-w-xs font-mono">
                               {product.description}
                             </div>
                           )}
@@ -180,39 +180,39 @@ export default function ProductList({ initialProducts, total }: ProductListProps
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm font-medium text-gray-900">
-                        ${product.price}
+                      <div className="text-sm font-medium neon-text-cyan font-cyber">
+                        ${product.price} [USD]
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <button
                         onClick={() => handleToggleStatus(product)}
                         disabled={isLoading}
-                        className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full transition-colors ${
+                        className={`inline-flex px-2 py-1 text-xs font-semibold rounded-cyber transition-all duration-300 font-cyber uppercase tracking-wider ${
                           product.is_active
-                            ? 'bg-green-100 text-green-800 hover:bg-green-200'
-                            : 'bg-gray-100 text-gray-800 hover:bg-gray-200'
+                            ? 'bg-neon-green/20 border border-neon-green text-neon-green hover:neon-glow-green hover:glitch'
+                            : 'bg-glitch-red/20 border border-glitch-red text-glitch-red hover:neon-glow-red hover:glitch'
                         } disabled:opacity-50`}
                       >
-                        {product.is_active ? 'Активен' : 'Неактивен'}
+                        {product.is_active ? '[ACTIVE]' : '[INACTIVE]'}
                       </button>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      {new Date(product.created_at).toLocaleDateString('ru-RU')}
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-neon-yellow font-mono">
+                      [{new Date(product.created_at).toLocaleDateString('ru-RU')}]
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-2">
                       <a
                         href={`/admin/products/${product.id}/edit`}
-                        className="text-blue-600 hover:text-blue-900"
+                        className="cyber-card inline-flex items-center px-3 py-1 bg-gradient-to-r from-neon-cyan/20 to-neon-blue/20 border border-neon-cyan text-neon-cyan hover:neon-glow-cyan hover:glitch transition-all duration-300 font-cyber text-xs uppercase tracking-wider"
                       >
-                        Редактировать
+                        [EDIT.SYS]
                       </a>
                       <button
                         onClick={() => handleDelete(product)}
                         disabled={isLoading}
-                        className="text-red-600 hover:text-red-900 disabled:opacity-50"
+                        className="cyber-card inline-flex items-center px-3 py-1 bg-gradient-to-r from-glitch-red/20 to-neon-pink/20 border border-glitch-red text-glitch-red hover:neon-glow-red hover:glitch transition-all duration-300 font-cyber text-xs uppercase tracking-wider disabled:opacity-50"
                       >
-                        Удалить
+                        [DELETE.BAT]
                       </button>
                     </td>
                   </tr>
