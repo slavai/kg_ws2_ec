@@ -41,7 +41,7 @@ export async function createProduct(data: CreateProductData): Promise<Product | 
 export async function updateProduct(data: UpdateProductData): Promise<Product | null> {
   const supabase = await createClient()
   
-  const updateData: any = {}
+  const updateData: Partial<CreateProductData> = {}
   if (data.name !== undefined) updateData.name = data.name
   if (data.description !== undefined) updateData.description = data.description
   if (data.image_url !== undefined) updateData.image_url = data.image_url

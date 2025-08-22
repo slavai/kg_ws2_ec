@@ -1,4 +1,5 @@
 import { createClient } from '@/lib/supabase/server'
+import Link from 'next/link'
 
 export default async function AdminDashboard() {
   const supabase = await createClient()
@@ -101,7 +102,7 @@ export default async function AdminDashboard() {
             </div>
           </a>
           
-          <a
+          <Link
             href="/"
             className="cyber-card bg-gradient-to-r from-neon-cyan/20 to-neon-blue/20 border-2 border-dashed border-neon-cyan hover:border-solid hover:neon-glow-cyan hover:glitch transition-all duration-300 p-4"
           >
@@ -110,7 +111,7 @@ export default async function AdminDashboard() {
               <div className="font-medium neon-text-cyan font-cyber uppercase tracking-wider">GO TO SITE</div>
               <div className="text-sm text-cyber-lighter font-mono">[CLIENT_VIEW.EXE]</div>
             </div>
-          </a>
+          </Link>
         </div>
       </div>
     </div>

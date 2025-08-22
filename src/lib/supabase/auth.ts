@@ -5,7 +5,7 @@ export interface SignUpData {
   email: string
   password: string
   fullName?: string
-  metadata?: Record<string, any>
+  metadata?: Record<string, unknown>
 }
 
 export interface SignInData {
@@ -29,8 +29,8 @@ const AUTH_ERROR_MESSAGES: Record<string, string> = {
   'Email already registered': 'Пользователь с таким email уже зарегистрирован',
 }
 
-function formatAuthError(error: any): string {
-  const message = error?.message || 'Произошла неизвестная ошибка'
+function formatAuthError(error: unknown): string {
+  const message = (error instanceof Error ? error.message : null) || 'Произошла неизвестная ошибка'
   return AUTH_ERROR_MESSAGES[message] || message
 }
 

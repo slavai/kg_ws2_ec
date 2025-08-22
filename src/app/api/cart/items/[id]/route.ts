@@ -4,7 +4,7 @@ import { createClient } from '@/lib/supabase/server'
 // PUT /api/cart/items/[id] - Update cart item quantity
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const supabase = await createClient()
@@ -17,7 +17,8 @@ export async function PUT(
 
     const body = await request.json()
     const { quantity } = body
-    const itemId = params.id
+    const resolvedParams = await params
+    const itemId = resolvedParams.id
 
     if (!quantity || quantity < 1) {
       return NextResponse.json({ 
@@ -89,7 +90,8 @@ export async function DELETE(
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
-    const itemId = params.id
+    const resolvedParams = await params
+    const itemId = resolvedParams.id
 
     // Check if item belongs to user
     const { data: existingItem, error: checkError } = await supabase

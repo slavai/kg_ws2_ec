@@ -30,8 +30,8 @@ export const fetchCart = createAsyncThunk(
       }
       const data = await response.json()
       return data.items || []
-    } catch (error: any) {
-      return rejectWithValue(error.message)
+    } catch (error: unknown) {
+      return rejectWithValue(error instanceof Error ? error.message : 'An error occurred')
     }
   }
 )
@@ -55,8 +55,8 @@ export const addToCart = createAsyncThunk(
       
       const data = await response.json()
       return data.item
-    } catch (error: any) {
-      return rejectWithValue(error.message)
+    } catch (error: unknown) {
+      return rejectWithValue(error instanceof Error ? error.message : 'An error occurred')
     }
   }
 )
@@ -80,8 +80,8 @@ export const updateCartItem = createAsyncThunk(
       
       const data = await response.json()
       return data.item
-    } catch (error: any) {
-      return rejectWithValue(error.message)
+    } catch (error: unknown) {
+      return rejectWithValue(error instanceof Error ? error.message : 'An error occurred')
     }
   }
 )
@@ -100,8 +100,8 @@ export const removeFromCart = createAsyncThunk(
       }
       
       return itemId
-    } catch (error: any) {
-      return rejectWithValue(error.message)
+    } catch (error: unknown) {
+      return rejectWithValue(error instanceof Error ? error.message : 'An error occurred')
     }
   }
 )
@@ -120,8 +120,8 @@ export const clearCart = createAsyncThunk(
       }
       
       return true
-    } catch (error: any) {
-      return rejectWithValue(error.message)
+    } catch (error: unknown) {
+      return rejectWithValue(error instanceof Error ? error.message : 'An error occurred')
     }
   }
 )

@@ -28,8 +28,8 @@ export default function ProductCard({ product }: ProductCardProps) {
       // Show success feedback
       setShowSuccess(true)
       setTimeout(() => setShowSuccess(false), 2000)
-    } catch (error: any) {
-      console.error('Failed to add to cart:', error)
+    } catch (error: unknown) {
+      console.log('Failed to add to cart:', error instanceof Error ? error.message : error)
       // Could add error toast here
     } finally {
       setIsAdding(false)

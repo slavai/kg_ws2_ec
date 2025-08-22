@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { useAppDispatch, usePurchasedProducts, useOrdersLoading } from '@/lib/redux/hooks'
 import { fetchPurchasedProducts, updateProductStatus } from '@/lib/redux/slices/ordersSlice'
+import Link from 'next/link'
 
 export default function PurchasedProductList() {
   const dispatch = useAppDispatch()
@@ -266,9 +267,9 @@ function EmptyProducts() {
           No digital products yet
         </h1>
         <p className="text-gray-600 dark:text-gray-400 mb-8">
-          You haven't purchased any digital products yet. Start exploring our catalog!
+          You haven&apos;t purchased any digital products yet. Start exploring our catalog!
         </p>
-        <a
+        <Link
           href="/"
           className="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors"
         >
@@ -276,7 +277,7 @@ function EmptyProducts() {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
           </svg>
           Browse Products
-        </a>
+        </Link>
       </div>
     </div>
   )

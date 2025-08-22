@@ -63,8 +63,8 @@ export default function TestDBPage() {
           Откройте консоль браузера (F12 → Console) и проверьте:
         </p>
         <ul className="mt-2 text-sm text-yellow-700 dark:text-yellow-300 list-disc list-inside space-y-1">
-          <li>Нет ошибок "Store does not have a valid reducer"</li>
-          <li>Нет ошибок "Error fetching user profile: {}"</li>
+          <li>Нет ошибок &quot;Store does not have a valid reducer&quot;</li>
+          <li>Нет ошибок &quot;Error fetching user profile: {}&quot;</li>
           <li>Redux store инициализирован корректно</li>
           <li>Auth context работает без ошибок</li>
         </ul>

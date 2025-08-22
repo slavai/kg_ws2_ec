@@ -28,8 +28,8 @@ export const fetchOrders = createAsyncThunk(
       }
       const data = await response.json()
       return data.orders || []
-    } catch (error: any) {
-      return rejectWithValue(error.message)
+    } catch (error: unknown) {
+      return rejectWithValue(error instanceof Error ? error.message : 'An error occurred')
     }
   }
 )
@@ -44,8 +44,8 @@ export const fetchPurchasedProducts = createAsyncThunk(
       }
       const data = await response.json()
       return data.products || []
-    } catch (error: any) {
-      return rejectWithValue(error.message)
+    } catch (error: unknown) {
+      return rejectWithValue(error instanceof Error ? error.message : 'An error occurred')
     }
   }
 )
@@ -69,8 +69,8 @@ export const updateProductStatus = createAsyncThunk(
       
       const data = await response.json()
       return data.product
-    } catch (error: any) {
-      return rejectWithValue(error.message)
+    } catch (error: unknown) {
+      return rejectWithValue(error instanceof Error ? error.message : 'An error occurred')
     }
   }
 )
@@ -93,8 +93,8 @@ export const processPurchase = createAsyncThunk(
       
       const data = await response.json()
       return data.order
-    } catch (error: any) {
-      return rejectWithValue(error.message)
+    } catch (error: unknown) {
+      return rejectWithValue(error instanceof Error ? error.message : 'An error occurred')
     }
   }
 )

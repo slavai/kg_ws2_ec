@@ -124,7 +124,7 @@ function EmptyOrders() {
           No orders yet
         </h1>
         <p className="text-gray-600 dark:text-gray-400 mb-8">
-          You haven't made any purchases yet. Start exploring our products!
+          You haven&apos;t made any purchases yet. Start exploring our products!
         </p>
         <Link
           href="/"

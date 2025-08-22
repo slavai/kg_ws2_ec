@@ -1,5 +1,6 @@
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
+import Link from 'next/link'
 
 export default async function AdminLayout({
   children,
@@ -68,13 +69,13 @@ export default async function AdminLayout({
                   &gt;&gt;&gt; ADMINISTRATOR &lt;&lt;&lt;
                 </div>
               </div>
-              <a
+              <Link
                 href="/"
                 className="cyber-card bg-gradient-to-r from-neon-cyan/20 to-neon-blue/20 border border-neon-cyan hover:neon-glow-cyan text-neon-cyan px-4 py-2 rounded-cyber text-sm font-cyber font-bold transition-all duration-300 flex items-center space-x-2 hover:glitch uppercase tracking-wider"
               >
                 <span className="text-base pulse-soft">🌐</span>
                 <span>[PORTAL.EXE]</span>
-              </a>
+              </Link>
             </div>
           </div>
         </div>

@@ -13,7 +13,7 @@ export default getRequestConfig(async () => {
     const cookieStore = await cookies();
     const localeCookie = cookieStore.get('NEXT_LOCALE');
     
-    if (localeCookie?.value && routing.locales.includes(localeCookie.value as any)) {
+    if (localeCookie?.value && routing.locales.includes(localeCookie.value as typeof routing.locales[number])) {
       locale = localeCookie.value as (typeof routing.locales)[number];
     } else {
       // Пытаемся определить из Accept-Language header

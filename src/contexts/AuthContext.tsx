@@ -7,7 +7,7 @@ import type { User as UserProfile } from '@/lib/types/database'
 
 // Production-safe debug helper
 const DEBUG_AUTH = process.env.NODE_ENV === 'development'
-const debugLog = (message: string, data?: any) => {
+const debugLog = (message: string, data?: unknown) => {
   if (DEBUG_AUTH) {
     // Use JSON.stringify to properly show object content
     const dataStr = data ? (typeof data === 'object' ? JSON.stringify(data, null, 2) : data) : ''
@@ -85,8 +85,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         .single()
 
       if (error) {
-        debugLog('fetchUserProfile error', error.message)
-        throw new Error(`Failed to fetch user profile: ${error.message}`)
+        debugLog('fetchUserProfile error', error instanceof Error ? error.message : String(error))
+        throw new Error(`Failed to fetch user profile: ${error instanceof Error ? error.message : String(error)}`)
       }
 
       // Update cache
@@ -97,9 +97,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
       debugLog('fetchUserProfile success', { email: data.email, isAdmin: data.is_admin })
       return data
-    } catch (error: any) {
-      debugLog('fetchUserProfile exception', error.message)
-      setError(error)
+    } catch (error: unknown) {
+      debugLog('fetchUserProfile exception', error instanceof Error ? error.message : String(error))
+      setError(error instanceof Error ? error : new Error('Unknown error'))
       return null
     }
   }, []) // Remove supabase dependency since it's now stable
@@ -128,8 +128,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         .single()
 
       if (error) {
-        debugLog('refreshProfile error', error.message)
-        setError(new Error(`Failed to refresh user profile: ${error.message}`))
+        debugLog('refreshProfile error', error instanceof Error ? error.message : String(error))
+        setError(new Error(`Failed to refresh user profile: ${error instanceof Error ? error.message : String(error)}`))
         return
       }
 
@@ -141,9 +141,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
       setUserProfile(data)
       debugLog('refreshProfile success', { email: data.email, isAdmin: data.is_admin })
-    } catch (error: any) {
-      debugLog('refreshProfile exception', error.message)
-      setError(error)
+    } catch (error: unknown) {
+      debugLog('refreshProfile exception', error instanceof Error ? error.message : String(error))
+      setError(error instanceof Error ? error : new Error('Unknown error'))
     }
   }, [user?.id]) // Remove supabase dependency
 
@@ -157,9 +157,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       // Clear caches
       profileCache.current.clear()
       debugLog('signOut: successful')
-    } catch (error: any) {
-      debugLog('signOut error', error.message)
-      setError(error)
+    } catch (error: unknown) {
+      debugLog('signOut error', error instanceof Error ? error.message : String(error))
+      setError(error instanceof Error ? error : new Error('Unknown error'))
       throw error
     }
   }, []) // Remove supabase dependency
@@ -169,14 +169,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     let mounted = true
     
     // Get initial session
-    supabase.auth.getSession().then(async ({ data: { session }, error }: { data: { session: Session | null }, error: any }) => {
+    supabase.auth.getSession().then(async ({ data: { session }, error }: { data: { session: Session | null }, error: unknown }) => {
       if (!mounted) return
       
       debugLog('getSession result', { hasSession: !!session, error: !!error })
       
       if (error) {
-        debugLog('getSession error', error.message)
-        setError(error)
+        debugLog('getSession error', error instanceof Error ? error.message : String(error))
+        setError(error instanceof Error ? error : new Error('Unknown error'))
       }
       
       // Set initial session state
@@ -210,10 +210,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
               timestamp: Date.now() 
             })
           }
-        } catch (profileError: any) {
-          debugLog('initial profile exception', profileError.message)
+        } catch (profileError: unknown) {
+          debugLog('initial profile exception', profileError instanceof Error ? profileError.message : String(profileError))
           if (mounted) {
-            setError(profileError)
+            setError(profileError instanceof Error ? profileError : new Error('Unknown error'))
           }
         }
       }
@@ -281,10 +281,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           profileCache.current.clear()
           debugLog('auth state change: user signed out')
         }
-      } catch (error: any) {
-        debugLog('auth state change error', error.message)
+      } catch (error: unknown) {
+        debugLog('auth state change error', error instanceof Error ? error.message : String(error))
         if (mounted) {
-          setError(error)
+          setError(error instanceof Error ? error : new Error('Unknown error'))
         }
       }
     })
