@@ -100,3 +100,4 @@ export function getStoredLocale(): Locale {
     return routing.defaultLocale;
   }
 }
+

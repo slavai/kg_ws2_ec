@@ -6,3 +6,4 @@ import { routing } from './routing';
 // которые учитывают конфигурацию маршрутизации
 export const { Link, redirect, usePathname, useRouter, getPathname } =
   createNavigation(routing);
+

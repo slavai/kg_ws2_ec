@@ -196,3 +196,4 @@ grep -r '"[A-Z][a-z].*"' src/ --include="*.tsx" --include="*.ts"
 **🔥 ГЛАВНОЕ ПРАВИЛО: NO HARDCODED TEXT! ВСЕ ЧЕРЕЗ t('key')!**
 
 **📚 Детальная документация**: `docs/I18N_GUIDE.md`
+

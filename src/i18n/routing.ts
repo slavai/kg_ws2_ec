@@ -16,3 +16,4 @@ export const routing = defineRouting({
 
 // Типы для TypeScript
 export type Locale = (typeof routing.locales)[number];
+
